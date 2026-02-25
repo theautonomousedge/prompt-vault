@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prompt Vault — When the People Feed the People</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="landing">
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="navbar-brand">Prompt Vault</a>
+      <button class="mobile-toggle" aria-label="Menu">&#9776;</button>
+      <ul class="navbar-links">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="browse.html">Browse Profiles</a></li>
+        <li><a href="dashboard.html">Dashboard</a></li>
+      </ul>
+      <div class="navbar-auth" id="navbar-auth"></div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <h1>When the government can't feed the people, the people feed the people.</h1>
+      <p>A peer-to-peer food gifting platform. No cash, no addresses exposed — just warm meals sent to neighbors who need them.</p>
+      <div class="hero-buttons">
+        <a href="browse.html" class="btn btn-primary btn-lg">Send a Meal</a>
+        <a href="signup.html" class="btn btn-secondary btn-lg">I Need a Meal</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="stats-bar">
+    <div class="stat-item">
+      <div class="stat-number" data-target="1284">0</div>
+      <div class="stat-label">Meals Sent</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number" data-target="312">0</div>
+      <div class="stat-label">Families Helped</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number" data-target="876">0</div>
+      <div class="stat-label">Donors Active</div>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section class="how-it-works">
+    <div class="container">
+      <h2>How It Works</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step-number">1</div>
+          <h3>Browse</h3>
+          <p>See real stories from people in your community who need a hand with their next meal.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">2</div>
+          <h3>Pick a Meal</h3>
+          <p>Choose a delivery gift card amount — DoorDash, Uber Eats, or Instacart. Their address stays private.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">3</div>
+          <h3>Someone Eats Tonight</h3>
+          <p>Your gift card is delivered securely. A real person gets a warm meal, thanks to you.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Profiles -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2>People Who Need a Meal</h2>
+        <p>Every profile is a real person in your community.</p>
+      </div>
+      <div class="card-grid" id="featured-profiles">
+        <div class="loading-spinner"><div class="spinner"></div></div>
+      </div>
+      <div class="text-center mt-4">
+        <a href="browse.html" class="btn btn-secondary">Browse All Profiles</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="testimonials">
+    <div class="container">
+      <div class="section-header">
+        <h2>What People Are Saying</h2>
+      </div>
+      <div class="testimonial-grid">
+        <div class="card testimonial-card">
+          <div class="quote">"I was between paychecks and my kids were hungry. Someone sent us a DoorDash gift card within an hour of me posting. I cried. People are good."</div>
+          <div class="author">— Maria G., Houston TX</div>
+        </div>
+        <div class="card testimonial-card">
+          <div class="quote">"I send a meal every Friday night. It takes me two minutes and $15 to make sure someone in my city eats dinner. Best money I spend all week."</div>
+          <div class="author">— David R., Donor</div>
+        </div>
+        <div class="card testimonial-card">
+          <div class="quote">"After my surgery, I couldn't cook or shop for weeks. The meals I received through this platform kept me going during recovery. Thank you all."</div>
+          <div class="author">— Sarah L., Portland OR</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section">
+    <div class="container text-center">
+      <h2>Everyone Deserves a Seat at the Table</h2>
+      <p class="text-muted mt-1" style="max-width:500px; margin-left:auto; margin-right:auto;">Whether you can give or you need to receive — this is your community. No judgment, just food.</p>
+      <div class="hero-buttons mt-3">
+        <a href="browse.html" class="btn btn-primary btn-lg">Send a Meal</a>
+        <a href="signup.html" class="btn btn-secondary btn-lg">I Need a Meal</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div>
+          <div class="footer-brand">Prompt Vault</div>
+          <div class="footer-tagline">Peer-to-peer food gifting. When the people feed the people.</div>
+        </div>
+        <div class="footer-links">
+          <div class="footer-links-col">
+            <h4>Platform</h4>
+            <a href="browse.html">Browse Profiles</a>
+            <a href="signup.html">Sign Up</a>
+            <a href="dashboard.html">Donor Dashboard</a>
+          </div>
+          <div class="footer-links-col">
+            <h4>About</h4>
+            <a href="#">How It Works</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        &copy; 2026 Prompt Vault. Built with love for the community.
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

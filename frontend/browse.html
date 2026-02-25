@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Browse Profiles — Prompt Vault</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="browse">
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="navbar-brand">Prompt Vault</a>
+      <button class="mobile-toggle" aria-label="Menu">&#9776;</button>
+      <ul class="navbar-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="browse.html" class="active">Browse Profiles</a></li>
+        <li><a href="dashboard.html">Dashboard</a></li>
+      </ul>
+      <div class="navbar-auth" id="navbar-auth"></div>
+    </div>
+  </nav>
+
+  <div class="page-content">
+    <div class="container">
+      <div class="section-header">
+        <h2>People Who Need a Meal</h2>
+        <p>Every profile is a real person. Pick someone and send them dinner tonight.</p>
+      </div>
+
+      <!-- Filters -->
+      <div class="filters-bar">
+        <input type="text" id="search-input" class="form-control search-input" placeholder="Search by name, city, or story...">
+        <select id="filter-state" class="form-control">
+          <option value="">All States</option>
+          <option value="AZ">Arizona</option>
+          <option value="CA">California</option>
+          <option value="GA">Georgia</option>
+          <option value="MI">Michigan</option>
+          <option value="NY">New York</option>
+          <option value="OR">Oregon</option>
+          <option value="TX">Texas</option>
+        </select>
+        <select id="filter-sort" class="form-control">
+          <option value="newest">Newest First</option>
+        </select>
+      </div>
+
+      <!-- Profiles Grid -->
+      <div class="card-grid" id="profiles-grid">
+        <div class="loading-spinner"><div class="spinner"></div></div>
+      </div>
+
+      <!-- Pagination -->
+      <div class="pagination" id="pagination"></div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        &copy; 2026 Prompt Vault. Built with love for the community.
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up — Prompt Vault</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="signup">
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="navbar-brand">Prompt Vault</a>
+      <button class="mobile-toggle" aria-label="Menu">&#9776;</button>
+      <ul class="navbar-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="browse.html">Browse Profiles</a></li>
+        <li><a href="dashboard.html">Dashboard</a></li>
+      </ul>
+      <div class="navbar-auth" id="navbar-auth"></div>
+    </div>
+  </nav>
+
+  <div class="page-content">
+
+    <!-- Sign Up Section -->
+    <div id="signup-section" class="auth-container">
+      <h2>Everyone Deserves a Seat at the Table</h2>
+      <p class="subtitle">Join our community — whether you want to give or receive.</p>
+
+      <div class="card">
+        <form id="register-form">
+          <div class="form-group">
+            <label for="reg-name">Display Name or Alias</label>
+            <input type="text" id="reg-name" name="display_name" class="form-control" placeholder="How should we call you?" required maxlength="100">
+          </div>
+          <div class="form-group">
+            <label for="reg-email">Email Address</label>
+            <input type="email" id="reg-email" name="email" class="form-control" placeholder="you@example.com" required>
+          </div>
+          <div class="form-group">
+            <label for="reg-phone">Phone Number (optional)</label>
+            <input type="tel" id="reg-phone" name="phone" class="form-control" placeholder="555-123-4567">
+          </div>
+          <div class="form-group">
+            <label for="reg-password">Password</label>
+            <input type="password" id="reg-password" name="password" class="form-control" placeholder="At least 8 characters" required minlength="8">
+          </div>
+          <div class="form-group">
+            <label for="reg-type">I want to...</label>
+            <select id="reg-type" name="user_type" class="form-control" required>
+              <option value="giver">Send meals to people (Donor)</option>
+              <option value="receiver">Receive meals (I need help)</option>
+              <option value="both">Both — give and receive</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary btn-lg" style="width:100%;">Create Account</button>
+          <p class="text-center mt-2 text-muted" style="font-size:0.85rem;">
+            Already have an account? <a href="#" id="show-login">Log in</a>
+          </p>
+        </form>
+      </div>
+    </div>
+
+    <!-- Login Section (hidden by default) -->
+    <div id="login-section" class="auth-container hidden">
+      <h2>Welcome Back</h2>
+      <p class="subtitle">Log in to continue feeding the community.</p>
+
+      <div class="card">
+        <form id="login-form">
+          <div class="form-group">
+            <label for="login-email">Email Address</label>
+            <input type="email" id="login-email" name="email" class="form-control" placeholder="you@example.com" required>
+          </div>
+          <div class="form-group">
+            <label for="login-password">Password</label>
+            <input type="password" id="login-password" name="password" class="form-control" placeholder="Your password" required>
+          </div>
+          <button type="submit" class="btn btn-primary btn-lg" style="width:100%;">Log In</button>
+          <p class="text-center mt-2 text-muted" style="font-size:0.85rem;">
+            Don't have an account? <a href="#" id="show-signup">Sign up</a>
+          </p>
+        </form>
+      </div>
+    </div>
+
+    <!-- Profile Setup (shown after receiver registers) -->
+    <div id="profile-setup-section" class="auth-container hidden">
+      <h2>Tell Donors About You</h2>
+      <p class="subtitle">This helps people understand your situation and want to help.</p>
+
+      <div class="card">
+        <form id="profile-form">
+          <div class="form-group">
+            <label for="prof-city">City</label>
+            <input type="text" id="prof-city" name="city" class="form-control" placeholder="Your city" required maxlength="100">
+          </div>
+          <div class="form-group">
+            <label for="prof-state">State</label>
+            <select id="prof-state" name="state" class="form-control" required>
+              <option value="">Select state...</option>
+              <option value="AL">Alabama</option><option value="AK">Alaska</option>
+              <option value="AZ">Arizona</option><option value="AR">Arkansas</option>
+              <option value="CA">California</option><option value="CO">Colorado</option>
+              <option value="CT">Connecticut</option><option value="DE">Delaware</option>
+              <option value="FL">Florida</option><option value="GA">Georgia</option>
+              <option value="HI">Hawaii</option><option value="ID">Idaho</option>
+              <option value="IL">Illinois</option><option value="IN">Indiana</option>
+              <option value="IA">Iowa</option><option value="KS">Kansas</option>
+              <option value="KY">Kentucky</option><option value="LA">Louisiana</option>
+              <option value="ME">Maine</option><option value="MD">Maryland</option>
+              <option value="MA">Massachusetts</option><option value="MI">Michigan</option>
+              <option value="MN">Minnesota</option><option value="MS">Mississippi</option>
+              <option value="MO">Missouri</option><option value="MT">Montana</option>
+              <option value="NE">Nebraska</option><option value="NV">Nevada</option>
+              <option value="NH">New Hampshire</option><option value="NJ">New Jersey</option>
+              <option value="NM">New Mexico</option><option value="NY">New York</option>
+              <option value="NC">North Carolina</option><option value="ND">North Dakota</option>
+              <option value="OH">Ohio</option><option value="OK">Oklahoma</option>
+              <option value="OR">Oregon</option><option value="PA">Pennsylvania</option>
+              <option value="RI">Rhode Island</option><option value="SC">South Carolina</option>
+              <option value="SD">South Dakota</option><option value="TN">Tennessee</option>
+              <option value="TX">Texas</option><option value="UT">Utah</option>
+              <option value="VT">Vermont</option><option value="VA">Virginia</option>
+              <option value="WA">Washington</option><option value="WV">West Virginia</option>
+              <option value="WI">Wisconsin</option><option value="WY">Wyoming</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="prof-story">Tell donors about your situation</label>
+            <textarea id="prof-story" name="story" class="form-control" maxlength="500" rows="5" placeholder="Share a bit about what you're going through and how a meal would help..." required></textarea>
+            <div class="form-hint">Max 500 characters</div>
+          </div>
+
+          <h4 class="mb-2 mt-3">Delivery Address</h4>
+          <div class="alert alert-info">
+            &#128274; Your address is encrypted and NEVER shown to donors. It's only used for gift card delivery.
+          </div>
+          <div class="form-group">
+            <label for="prof-street">Street Address</label>
+            <input type="text" id="prof-street" name="street" class="form-control" placeholder="123 Main St, Apt 4" required maxlength="200">
+          </div>
+          <div class="form-group">
+            <label for="prof-zip">ZIP Code</label>
+            <input type="text" id="prof-zip" name="zip_code" class="form-control" placeholder="12345" required pattern="[0-9]{5,10}" maxlength="10">
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-lg mt-2" style="width:100%;">Complete My Profile</button>
+        </form>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        &copy; 2026 Prompt Vault. Built with love for the community.
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

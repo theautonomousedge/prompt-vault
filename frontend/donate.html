@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Send a Meal — Prompt Vault</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="donate">
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="navbar-brand">Prompt Vault</a>
+      <button class="mobile-toggle" aria-label="Menu">&#9776;</button>
+      <ul class="navbar-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="browse.html">Browse Profiles</a></li>
+        <li><a href="dashboard.html">Dashboard</a></li>
+      </ul>
+      <div class="navbar-auth" id="navbar-auth"></div>
+    </div>
+  </nav>
+
+  <div class="page-content">
+    <div class="container">
+      <h2 class="mb-3">Send a Meal to <span id="recipient-name" class="text-gold"></span></h2>
+      <p class="text-muted mb-4">&#128205; <span id="recipient-city"></span></p>
+
+      <div class="donate-layout">
+        <!-- Left: Form -->
+        <div id="donate-form-section">
+          <form id="donate-form">
+            <!-- Delivery Method -->
+            <h4 class="mb-2">Choose Delivery Method</h4>
+            <div class="delivery-options mb-4">
+              <div class="delivery-option" data-method="doordash">
+                <div style="font-size:1.5rem; margin-bottom:4px;">&#127860;</div>
+                <div class="delivery-name">DoorDash</div>
+              </div>
+              <div class="delivery-option" data-method="ubereats">
+                <div style="font-size:1.5rem; margin-bottom:4px;">&#128663;</div>
+                <div class="delivery-name">Uber Eats</div>
+              </div>
+              <div class="delivery-option" data-method="instacart">
+                <div style="font-size:1.5rem; margin-bottom:4px;">&#128722;</div>
+                <div class="delivery-name">Instacart</div>
+              </div>
+            </div>
+
+            <!-- Amount -->
+            <h4 class="mb-2">Select Amount</h4>
+            <div class="amount-options">
+              <button type="button" class="amount-option" data-amount="10">$10</button>
+              <button type="button" class="amount-option" data-amount="15">$15</button>
+              <button type="button" class="amount-option" data-amount="25">$25</button>
+              <button type="button" class="amount-option" data-amount="50">$50</button>
+            </div>
+            <div class="form-group">
+              <input type="number" id="custom-amount" class="form-control" placeholder="Custom amount ($)" min="1" step="0.01">
+            </div>
+
+            <!-- Tip -->
+            <h4 class="mb-2">Add a Tip to Keep the Platform Running</h4>
+            <div class="tip-options mb-4">
+              <button type="button" class="tip-option" data-tip="10">10%</button>
+              <button type="button" class="tip-option" data-tip="12">12%</button>
+              <button type="button" class="tip-option" data-tip="15">15%</button>
+              <button type="button" class="tip-option" data-tip="20">20%</button>
+            </div>
+
+            <!-- Message -->
+            <div class="form-group">
+              <label for="donate-message">Add a message (optional)</label>
+              <textarea id="donate-message" class="form-control" maxlength="500" rows="3" placeholder="Say something kind..."></textarea>
+            </div>
+
+            <button type="submit" id="donate-submit" class="btn btn-primary btn-lg" style="width:100%;">
+              Send Meal Now
+            </button>
+          </form>
+        </div>
+
+        <!-- Right: Order Summary -->
+        <div id="order-summary-section">
+          <div class="card order-summary">
+            <h3>Order Summary</h3>
+            <div class="summary-row">
+              <span>Recipient</span>
+              <span id="summary-recipient"></span>
+            </div>
+            <div class="summary-row">
+              <span>Meal Gift Card</span>
+              <span id="summary-amount">$25.00</span>
+            </div>
+            <div class="summary-row">
+              <span>Platform Tip</span>
+              <span id="summary-tip">$3.00</span>
+            </div>
+            <div class="summary-row total">
+              <span>Total</span>
+              <span id="summary-total">$28.00</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Confirmation (hidden by default) -->
+        <div id="confirmation-section" class="hidden" style="grid-column: 1 / -1;">
+          <div class="confirmation">
+            <div class="check-icon">&#10003;</div>
+            <h2>You just fed <span id="confirm-name" class="text-gold"></span>!</h2>
+            <p>In <span id="confirm-city"></span>. Your gift card will be delivered to them securely. Thank you for being an incredible human.</p>
+            <div class="hero-buttons">
+              <a href="browse.html" class="btn btn-primary">Send Another Meal</a>
+              <a href="dashboard.html" class="btn btn-secondary">View Dashboard</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        &copy; 2026 Prompt Vault. Built with love for the community.
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

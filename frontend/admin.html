@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel — Prompt Vault</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="admin">
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="navbar-brand">Prompt Vault</a>
+      <button class="mobile-toggle" aria-label="Menu">&#9776;</button>
+      <ul class="navbar-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="browse.html">Browse Profiles</a></li>
+        <li><a href="dashboard.html">Dashboard</a></li>
+      </ul>
+      <div class="navbar-auth" id="navbar-auth"></div>
+    </div>
+  </nav>
+
+  <div class="page-content">
+    <div class="container">
+      <h2 class="mb-3">Admin Panel</h2>
+
+      <!-- Overview Stats -->
+      <div class="dashboard-stats mb-4">
+        <div class="card stat-card">
+          <div class="stat-number text-gold" id="admin-users">0</div>
+          <div class="stat-label">Total Users</div>
+        </div>
+        <div class="card stat-card">
+          <div class="stat-number text-gold" id="admin-txns">0</div>
+          <div class="stat-label">Transactions</div>
+        </div>
+        <div class="card stat-card">
+          <div class="stat-number text-gold" id="admin-amount">$0</div>
+          <div class="stat-label">Total Volume</div>
+        </div>
+      </div>
+
+      <!-- Tabs -->
+      <div class="admin-tabs">
+        <button class="admin-tab active" data-panel="pending">Pending Profiles (<span id="admin-pending">0</span>)</button>
+        <button class="admin-tab" data-panel="transactions">Transactions</button>
+        <button class="admin-tab" data-panel="stats">Analytics</button>
+      </div>
+
+      <!-- Pending Profiles Panel -->
+      <div id="panel-pending" class="admin-panel">
+        <div class="card" style="overflow-x:auto;">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Location</th>
+                <th>Story</th>
+                <th>Joined</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="pending-tbody">
+              <tr><td colspan="5" class="text-center text-muted">Loading...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Transactions Panel -->
+      <div id="panel-transactions" class="admin-panel hidden">
+        <div class="card" style="overflow-x:auto;">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Donor</th>
+                <th>Recipient</th>
+                <th>Amount</th>
+                <th>Method</th>
+                <th>Status</th>
+                <th>Date</th>
+              </tr>
+            </thead>
+            <tbody id="transactions-tbody">
+              <tr><td colspan="6" class="text-center text-muted">Loading...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Analytics Panel -->
+      <div id="panel-stats" class="admin-panel hidden">
+        <div class="dashboard-stats">
+          <div class="card stat-card">
+            <div class="stat-number text-gold" id="admin-profiles">0</div>
+            <div class="stat-label">Total Profiles</div>
+          </div>
+          <div class="card stat-card">
+            <div class="stat-number" style="color:#FFB74D;" id="admin-flagged">0</div>
+            <div class="stat-label">Flagged Profiles</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        &copy; 2026 Prompt Vault. Built with love for the community.
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

@@ -11,3 +11,4 @@ STRIPE_PUBLISHABLE_KEY = os.getenv("STRIPE_PUBLISHABLE_KEY", "")
 STRIPE_WEBHOOK_SECRET = os.getenv("STRIPE_WEBHOOK_SECRET", "")
 JWT_SECRET = os.getenv("JWT_SECRET", "dev-jwt-secret-change-me")
 JWT_EXPIRY_HOURS = 24
+FRONTEND_URL = os.getenv("FRONTEND_URL", "http://localhost:8000")

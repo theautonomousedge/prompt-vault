@@ -1,5 +1,5 @@
 import stripe
-from config import STRIPE_SECRET_KEY, STRIPE_WEBHOOK_SECRET
+from config import STRIPE_SECRET_KEY, STRIPE_WEBHOOK_SECRET, FRONTEND_URL
 
 stripe.api_key = STRIPE_SECRET_KEY
 
@@ -9,9 +9,13 @@ def create_checkout_session(
     tip_cents: int,
     receiver_name: str,
     transaction_id: str,
-    success_url: str = "http://localhost:8000/payment/success",
-    cancel_url: str = "http://localhost:8000/payment/cancel",
+    success_url: str = None,
+    cancel_url: str = None,
 ) -> stripe.checkout.Session:
+    if success_url is None:
+        success_url = f"{FRONTEND_URL}/success.html"
+    if cancel_url is None:
+        cancel_url = f"{FRONTEND_URL}/cancel.html"
     line_items = [
         {
             "price_data": {

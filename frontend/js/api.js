@@ -1,7 +1,9 @@
 /**
  * API helper — all backend calls go through here.
+ * When served from FastAPI (same origin), use '' so requests go to the same host.
+ * Override with window.API_BASE if needed for external hosting.
  */
-const API_BASE = 'http://localhost:8000';
+const API_BASE = window.API_BASE || '';
 
 const api = {
   /** Generic fetch wrapper with auth header injection. */

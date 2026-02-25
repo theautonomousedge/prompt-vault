@@ -1,8 +1,11 @@
+import os
 from datetime import datetime, timezone
+from pathlib import Path
 
 from fastapi import FastAPI, Depends, HTTPException, Query, Request, status
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
+from fastapi.staticfiles import StaticFiles
 from sqlalchemy.orm import Session
 from sqlalchemy import func
 
@@ -495,3 +498,13 @@ def admin_stats(
 @app.get("/config/stripe")
 def stripe_config():
     return {"publishable_key": STRIPE_PUBLISHABLE_KEY}
+
+
+# ---------------------------------------------------------------------------
+# Static file serving — serves the frontend from /
+# Must be AFTER all API routes (catch-all)
+# ---------------------------------------------------------------------------
+
+_frontend_dir = Path(__file__).resolve().parent.parent / "frontend"
+if _frontend_dir.is_dir():
+    app.mount("/", StaticFiles(directory=str(_frontend_dir), html=True), name="frontend")

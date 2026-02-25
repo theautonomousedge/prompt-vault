@@ -19,6 +19,43 @@
 
 ---
 
+## AGENT BEHAVIORAL RULES
+
+### You CAN do autonomously:
+- Read any file, search codebase, run `git log`/`git status`
+- Edit code in `backend/` and `frontend/` to implement roadmap tasks
+- Run the server, run tests, seed the database
+- Make small atomic commits during your session
+- Fix bugs you discover while working
+
+### You MUST ask the user before:
+- Adding new dependencies to `requirements.txt`
+- Creating new files outside the existing structure
+- Changing the file/folder layout
+- Making architectural decisions not in the blueprints
+- Pushing to remote (do it at end-of-session per protocol, but confirm if unsure)
+- Deleting any file
+
+### Deviation Protocol:
+If you want to change something architectural that contradicts `blueprints/architecture.md`:
+1. **STOP** — do not implement it
+2. Describe what you want to change and why
+3. Wait for explicit approval
+4. If approved: update the blueprint FIRST, then implement
+
+### When in doubt, ask. Don't guess.
+
+### NEXT 3 STEPS (from `blueprints/roadmap.md`):
+> Agents: Update this section when you complete steps. Always show the next 3.
+
+1. **Lock CORS** — Replace `allow_origins=["*"]` with specific origins in `main.py`
+2. **Add rate limiting** — Install `slowapi`, add limits to auth and transaction routes
+3. **Server-side sanitization** — Sanitize story/message fields before storing
+
+*(These are from Phase 2: Harden Auth & Security. See `blueprints/roadmap.md` for full list.)*
+
+---
+
 ## PROJECT IDENTITY
 
 - **Name**: Prompt Vault — Food Gifting Platform
@@ -31,15 +68,48 @@
 
 ---
 
-## FILE STRUCTURE (Last Updated: 2026-02-25, Session 1 End)
+## QUICK START
+
+```bash
+pip install -r requirements.txt          # Install deps
+cd backend && python seed.py             # Seed test data
+cd backend && uvicorn main:app --reload --host 0.0.0.0 --port 8000  # Run server
+```
+
+**Test accounts** (from seed): Admin: `admin@promptvault.org` / `admin1234` | Donor: `donor@test.com` / `donor1234` | Recipients: `maria@test.com` etc. / `password123`
+
+**Verify it works**: `curl http://localhost:8000/health` → `{"status":"ok"}`
+
+---
+
+## FILE STRUCTURE (Last Updated: 2026-02-25, Session 2 End)
 
 ```
 prompt-vault/
 ├── CLAUDE.md                    # THIS FILE — project rules & state (READ FIRST)
+├── brainstorm.md                # User ideas & musings (append-only)
 ├── .env.example                 # Environment variable template (8 vars)
 ├── .gitignore                   # Git ignore rules
 ├── README.md                    # Project overview & setup instructions
 ├── requirements.txt             # Python dependencies (10 packages, pinned)
+│
+├── blueprints/                  # Architecture & planning (SINGLE SOURCE OF TRUTH)
+│   ├── architecture.md          # System design, how pieces connect, data flows
+│   ├── roadmap.md               # Phase-by-phase task list (agents follow this)
+│   └── data-model.md            # DB schema, relationships, enums, encryption
+│
+├── docs/                        # Reference material (read on demand)
+│   ├── api-reference.md         # All 22 API routes + DB models + Pydantic schemas
+│   └── decisions.md             # Architecture decisions log (append-only)
+│
+├── reports/                     # For the USER (progress tracking)
+│   └── task-logs.md             # Chronological task history across sessions
+│
+├── agents/                      # Agent role definitions
+│   └── README.md                # What each agent type should do
+│
+├── skills/                      # Available tools & patterns reference
+│   └── README.md                # Commands, test creds, codebase patterns
 │
 ├── backend/                     # FastAPI Python backend
 │   ├── main.py          (510L)  # App entry + 22 API routes + static file serving
@@ -72,31 +142,38 @@ prompt-vault/
     └── handoff.md               # Agent-to-agent handoff log (append-only)
 ```
 
-**Total: ~4,037 lines across 21 source files**
+**Total: ~4,037 lines across 21 source files + ~1,200 lines in docs/blueprints/reports**
 
 ---
 
 ## SESSION PROTOCOL — MANDATORY FOR EVERY AGENT
 
 ### At Session START:
-1. Read this CLAUDE.md completely
+1. Read this CLAUDE.md completely (especially FAILSAFE RULES and NEXT 3 STEPS)
 2. Read `scripts/handoff.md` for previous session context
-3. Check `git log --oneline -10` to see recent work
-4. Confirm you're on branch `claude/food-gifting-mvp-FFgJW`
+3. Read `brainstorm.md` for any user ideas to be aware of
+4. Check `git log --oneline -10` to see recent work
+5. Confirm you're on branch `claude/food-gifting-mvp-FFgJW`
+6. Tell the user: "Here's where we are and the next 3 steps: [list them]"
 
 ### During Session:
 1. Use TodoWrite to track all tasks
 2. Make small, atomic commits with clear messages
-3. Do NOT restructure the file layout without explicit approval
-4. Do NOT add new frameworks or build tools
-5. Do NOT create files unless absolutely necessary
-6. Keep backend in `backend/`, frontend in `frontend/`, scripts in `scripts/`
+3. Log any non-trivial decisions in `docs/decisions.md`
+4. If user says "brainstorm [idea]" → append to `brainstorm.md`
+5. Follow `blueprints/roadmap.md` — don't freelance
+6. Reference `docs/api-reference.md` when touching routes/models
+7. Reference `skills/README.md` for commands and patterns
 
 ### At Session END (BEFORE final push — DO NOT SKIP):
-1. **Update this CLAUDE.md** — refresh the file structure section with current line counts
-2. **Update `scripts/handoff.md`** — full handoff report (see template below)
-3. **Commit both files** with message: `chore: end-of-session update — CLAUDE.md + handoff`
-4. **Push** to `claude/food-gifting-mvp-FFgJW`
+1. **Update CLAUDE.md** — refresh file structure line counts, update NEXT 3 STEPS
+2. **Update `scripts/handoff.md`** — append full handoff report (see template)
+3. **Update `reports/task-logs.md`** — append session's completed tasks
+4. **Update `brainstorm.md`** — if any new ideas were discussed
+5. **Update `blueprints/roadmap.md`** — mark completed tasks, add new ones if approved
+6. **Commit all docs** with message: `chore: end-of-session update — CLAUDE.md + handoff`
+7. **Verify**: `wc -l CLAUDE.md scripts/handoff.md` (both must be >20 lines)
+8. **Push** to `claude/food-gifting-mvp-FFgJW`
 
 ---
 
@@ -124,48 +201,16 @@ prompt-vault/
 
 ---
 
-## API ROUTES REFERENCE (22 total)
+## API & DATA REFERENCE
 
-### Auth (3):
-- `POST /auth/register` — Register with email, password, display_name, user_type
-- `POST /auth/login` — Login, returns JWT
-- `POST /auth/verify` — Verify account (MVP: any 6-digit code)
+> Full details moved to external files to keep this file scannable.
 
-### Profiles (4):
-- `GET /profiles` — List public profiles (filters: city, state, search, sort, pagination)
-- `GET /profiles/{id}` — Single profile with meal count
-- `POST /profiles` — Create receiver profile (encrypted address)
-- `PUT /profiles/{id}` — Update profile
-
-### Transactions (2):
-- `POST /transactions` — Create donation + Stripe checkout (or demo mode)
-- `GET /transactions/my` — Donor's history (last 50)
-
-### Dashboard (1):
-- `GET /dashboard/stats` — Donor impact stats
-
-### Admin (5):
-- `GET /admin/profiles/pending` — Unverified profiles
-- `POST /admin/profiles/{id}/approve` — Approve profile
-- `POST /admin/profiles/{id}/flag` — Flag/hide profile
-- `GET /admin/transactions` — Transaction log
-- `GET /admin/stats` — Platform analytics
-
-### Stripe (1):
-- `POST /webhook/stripe` — Payment completion webhook
-
-### Config (1):
-- `GET /config/stripe` — Public Stripe key for frontend
-
----
-
-## DATABASE MODELS (5)
-
-1. **User** — id, email, phone, display_name, user_type (giver/receiver/both/admin), password_hash, is_verified, created_at
-2. **Profile** — id, user_id (FK), city, state, story, is_public, is_verified, is_flagged, created_at
-3. **Address** — id, user_id (FK), encrypted_street, encrypted_zip, city, state (sensitive fields AES encrypted)
-4. **Transaction** — id, giver_id, receiver_id, amount, tip_amount, delivery_method, gift_card_code, status, stripe_payment_intent_id, message, created_at
-5. **Connection** — id, giver_id, receiver_id, relationship_type, is_confirmed (DEFINED BUT UNUSED)
+- **22 API routes** (Auth 3, Profiles 4, Transactions 2, Dashboard 1, Admin 5, Stripe 1, Config 1) → See `docs/api-reference.md`
+- **5 database models** (User, Profile, Address, Transaction, Connection) → See `docs/api-reference.md`
+- **Pydantic schemas** (7 request + 6 response) → See `docs/api-reference.md`
+- **Architecture & data flows** → See `blueprints/architecture.md`
+- **DB relationships & enums** → See `blueprints/data-model.md`
+- **All decisions with rationale** → See `docs/decisions.md`
 
 ---
 
@@ -213,7 +258,7 @@ prompt-vault/
 ## HANDOFF TEMPLATE (for scripts/handoff.md)
 
 ```markdown
-# Session Handoff — [DATE]
+# Session [N] — [DATE]
 
 ## What Was Done
 - [bullet points of completed work]
@@ -223,9 +268,18 @@ prompt-vault/
 
 ## What We Discussed / Decided
 - [any decisions, architecture choices, or user preferences noted]
+- [log these in docs/decisions.md too]
 
 ## Known Bugs Found
 - [any bugs discovered during this session]
+
+## Brainstorm Items Captured
+- [any ideas the user mentioned — also in brainstorm.md]
+
+## Test Credentials
+- Admin: admin@promptvault.org / admin1234
+- Donor: donor@test.com / donor1234
+- Recipients: maria@test.com, etc. / password123
 
 ## Next Session Should Start With
 - [specific first steps for the next agent]
@@ -233,3 +287,20 @@ prompt-vault/
 ## Files Changed This Session
 - [list of files modified/created with brief description]
 ```
+
+---
+
+## KEY REFERENCES (quick links for agents)
+
+| What | Where |
+|------|-------|
+| System architecture | `blueprints/architecture.md` |
+| Phase roadmap | `blueprints/roadmap.md` |
+| Data model & enums | `blueprints/data-model.md` |
+| API routes (all 22) | `docs/api-reference.md` |
+| Architecture decisions | `docs/decisions.md` |
+| Agent role guide | `agents/README.md` |
+| Commands & patterns | `skills/README.md` |
+| User ideas | `brainstorm.md` |
+| Task history (for user) | `reports/task-logs.md` |
+| Agent handoff log | `scripts/handoff.md` |

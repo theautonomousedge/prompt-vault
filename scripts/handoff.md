@@ -72,3 +72,88 @@
 - `frontend/success.html` — CREATED: Stripe payment success page
 - `frontend/cancel.html` — CREATED: Stripe payment cancelled page
 - `.env.example` — MODIFIED: Added FRONTEND_URL variable
+
+---
+
+# Session 2 — 2026-02-25 (COMPLETED)
+
+## What Was Done
+- **Comprehensive CLAUDE.md upgrade** based on community "Ultimate CLAUDE.md Guide"
+- Built full project ecosystem from scratch:
+  - `blueprints/architecture.md` — System design, request flows, file ownership, data flow diagrams
+  - `blueprints/roadmap.md` — Phase 1-5 task list with checkboxes (Phase 1 done, Phase 2 next)
+  - `blueprints/data-model.md` — ER diagram, relationships, enums, encryption strategy
+  - `docs/api-reference.md` — All 22 routes in table format + 5 DB models with field details + Pydantic schemas
+  - `docs/decisions.md` — 7 architecture decisions logged with rationale (D-001 through D-007)
+  - `reports/task-logs.md` — Session 1 and 2 task history (for user review)
+  - `agents/README.md` — Agent role definitions (Default, Implementer, Reviewer, Planner)
+  - `skills/README.md` — Available tools, commands, test creds, codebase patterns
+  - `brainstorm.md` — Empty template for capturing user ideas
+- Added to CLAUDE.md:
+  - Agent Behavioral Rules (can do / must ask / deviation protocol)
+  - **NEXT 3 STEPS section** — always visible, always updated
+  - Quick Start section (commands + test creds at a glance)
+  - Key References table (quick links to all docs)
+  - Updated file structure with all new directories
+  - Enhanced session protocol (reads brainstorm, updates reports, tells user next steps)
+- Moved API routes + DB models from CLAUDE.md to `docs/api-reference.md` (leaner core)
+
+## What Was NOT Finished
+- **Phase 2 not started** — that's for the next agent
+- Some support files are templates/stubs — next agent should verify and flesh out as needed
+- No code changes to backend/ or frontend/ this session (documentation-only session)
+
+## What We Discussed / Decided
+- **Blueprints are non-negotiable** — agents follow the plan, they don't rewrite it
+- **Reports are for the USER** — not for agents. User reads these to track progress
+- **agents/ and skills/ directories stay** — user needs agents to know their role and available tools
+- **brainstorm.md added** — when user says "brainstorm [idea]", it goes here and gets passed forward
+- **NEXT 3 STEPS in CLAUDE.md** — user wants to be TOLD what's next, not asked
+- **User is going LOCAL** — next session will be Claude Code running locally, not web
+
+## Known Bugs Found (This Session)
+- No new bugs (no code changes this session)
+- Outstanding from Session 1: admin silent error swallowing, unused Connection model
+
+## Brainstorm Items Captured
+- None yet (brainstorm.md created but empty)
+
+## Test Credentials
+- **Admin**: admin@promptvault.org / admin1234
+- **Donor**: donor@test.com / donor1234
+- **Recipients**: maria@test.com, james@test.com, aisha@test.com, carlos@test.com, sarah@test.com / password123
+
+## CRITICAL NOTE FOR NEXT AGENT
+**You are the first LOCAL agent.** The user switched from Claude Code web to local.
+1. The project code is fully functional (Phase 1 complete, tested)
+2. All documentation/blueprint files were just created — some may need expanding
+3. Your job: Read CLAUDE.md → check NEXT 3 STEPS → start Phase 2
+4. The app files are NOT YET BUILT locally — you need to:
+   - `pip install -r requirements.txt`
+   - `cp .env.example .env` and fill in values (or just use defaults for dev)
+   - `cd backend && python seed.py` to create test data
+   - `cd backend && uvicorn main:app --reload --host 0.0.0.0 --port 8000` to verify it runs
+5. Once verified, start Phase 2: Lock CORS → Add rate limiting → Server-side sanitization
+
+## Next Session Should Start With
+1. Read `CLAUDE.md` (especially FAILSAFE RULES, AGENT BEHAVIORAL RULES, and NEXT 3 STEPS)
+2. Read this handoff (Session 2 entry)
+3. Set up local environment (pip install, seed, verify server boots)
+4. Start Phase 2 per NEXT 3 STEPS in CLAUDE.md:
+   - Lock CORS to specific origins
+   - Add rate limiting (slowapi)
+   - Server-side sanitization
+5. After completing Phase 2, update NEXT 3 STEPS to show Phase 3 tasks
+
+## Files Changed This Session
+- `CLAUDE.md` — MODIFIED: Added agent rules, NEXT 3 STEPS, quick start, key references, updated file structure
+- `scripts/handoff.md` — APPENDED: This Session 2 entry
+- `blueprints/architecture.md` — CREATED: System design and data flows
+- `blueprints/roadmap.md` — CREATED: Phase 1-5 task list
+- `blueprints/data-model.md` — CREATED: ER diagram and relationships
+- `docs/api-reference.md` — CREATED: Full API route tables and DB model details
+- `docs/decisions.md` — CREATED: 7 architecture decisions from Sessions 1-2
+- `reports/task-logs.md` — CREATED: Session 1-2 task history
+- `agents/README.md` — CREATED: Agent role definitions
+- `skills/README.md` — CREATED: Tools, commands, patterns reference
+- `brainstorm.md` — CREATED: Empty ideas template
